@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import { Col, Alert } from 'reactstrap';
+import Faker from 'faker/locale/ko';
+import $ from 'jquery';
 
 import { observable } from 'mobx';
-import { observer } from 'mobx-react';
+import { observer, inject } from 'mobx-react';
 
 import TodoHeader from './TodoHeader';
-import TodoButton from './TodoButton';
+import {Store} from './store';
 
 var badgeCount = observable.box(0)
 
+@inject('store')
 @observer
 class TodoList extends Component {
     // constructor(props){
@@ -24,18 +27,25 @@ class TodoList extends Component {
     componentWillMount() {
         badgeCount = 3
     }
-    
+
+    _click(res){
+        this.props.store.test("5")
+        console.log("!!!!!!!!!!!!!!!!!!!!!!!!")
+    }
+
 
     _insertTodoList(todoListArray){
         
     }
 
     render() {
+        const {store} = this.props;
         return (
             <div>
+                {store.test1}
                 <Col lg={3}><TodoHeader badge={badgeCount}/></Col>
                 <Col lg={3}><Alert>123</Alert></Col>
-                <Col lg={3}><TodoButton insert={this._insertTodoList}/></Col>
+                <button onClick={this._click.bind(this)}>ttt</button>
             </div>
         );
     }
