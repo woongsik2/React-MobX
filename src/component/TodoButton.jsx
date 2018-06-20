@@ -3,8 +3,6 @@ import { Button } from 'reactstrap';
 import { observable } from 'mobx';
 import { observer, inject } from 'mobx-react';
 
-var badgeCount = observable.box(0)
-
 @inject('store')
 @observer
 class TodoButton extends Component {
@@ -18,10 +16,9 @@ class TodoButton extends Component {
     }
 
     insertTodo(){
-        console.log('insertTodo')
         this.props.todoCreate(function(res){
-            console.log(res)
-        })
+            this.props.store.todoListInsert(res)
+        }.bind(this))
     }
 
     removeTodo(){
@@ -32,7 +29,6 @@ class TodoButton extends Component {
         const {store} = this.props;
         return (
             <div className="float-right">
-                {store.test}
                 <Button color='primary' onClick={this.insertTodo}>추가</Button>
                 <Button color='primary' onClick={this.removeTodo}>제거</Button>
             </div>

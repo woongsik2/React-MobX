@@ -3,18 +3,11 @@ import React, { Component } from 'react';
 import { Col, Label, Badge, Input, Form, FormGroup } from 'reactstrap';
 
 import { observable } from 'mobx';
-import { observer, Provider } from 'mobx-react';
+import { observer, Provider, inject } from 'mobx-react';
 
 import TodoButton from './TodoButton';
 
-var todoText = observable.box('')
-
-class Store{
-    @observable test = 'text'
-}
-
-const store = new Store();
-
+@inject('store')
 @observer
 class TodoHeader extends Component {
     constructor(props){
@@ -27,23 +20,24 @@ class TodoHeader extends Component {
     }
 
     _insertTodoList(next){
-        todoText = this.todoText.value
+        let todoText = this.todoText.value
+        if(todoText.length === 0) return
         next(todoText)
     }
     
 
     render() {
+        const {store} = this.props;
+
         return (
-            <Provider store={store}>
                 <div>
-                    <Label>To-Do List <Badge>{this.props.badge}</Badge></Label>
+                    <Label>To-Do List<Badge>{store.todoListArray.length}</Badge></Label>
                     <Form inline>
                         <FormGroup>
                             <Input type='text' innerRef={input => this.todoText = input}></Input><TodoButton todoCreate={this._insertTodoList}/>
                         </FormGroup>
                     </Form>
                 </div>
-            </Provider>
         );
     }
 }

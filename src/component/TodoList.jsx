@@ -9,8 +9,6 @@ import { observer, inject } from 'mobx-react';
 import TodoHeader from './TodoHeader';
 import {Store} from './store';
 
-var badgeCount = observable.box(0)
-
 @inject('store')
 @observer
 class TodoList extends Component {
@@ -25,27 +23,28 @@ class TodoList extends Component {
 
     
     componentWillMount() {
-        badgeCount = 3
-    }
-
-    _click(res){
-        this.props.store.test("5")
-        console.log("!!!!!!!!!!!!!!!!!!!!!!!!")
-    }
-
+        console.log(">>>>>>>>>>>>>>>", this.props.store.todoListArray.length)
+    }    
 
     _insertTodoList(todoListArray){
         
     }
 
     render() {
-        const {store} = this.props;
+        const {store} = this.props
+        console.log(store.todoListArray.length)
+        
+        let listComponent = store.todoListArray.map(function(obj){
+            return (
+                <Col lg={3} key={obj.id}><Alert><button type="check"></button>{obj.text}</Alert></Col>
+            )
+        })
+        // <Col lg={3}><Alert>123</Alert></Col>
+
         return (
             <div>
-                {store.test1}
-                <Col lg={3}><TodoHeader badge={badgeCount}/></Col>
-                <Col lg={3}><Alert>123</Alert></Col>
-                <button onClick={this._click.bind(this)}>ttt</button>
+                <Col lg={3}><TodoHeader/></Col>
+                {listComponent}
             </div>
         );
     }
