@@ -30,7 +30,7 @@ class TodoButton extends Component {
         return (
             <div className="float-right">
                 <Button color='primary' onClick={this.insertTodo}>추가</Button>
-                <Button color='primary' onClick={this.removeTodo}>제거</Button>
+                {/*<Button color='primary' onClick={this.removeTodo}>제거</Button>*/}
             </div>
         );
     }
