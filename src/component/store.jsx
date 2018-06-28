@@ -14,7 +14,8 @@ export class Store{
     @action
     todoListInsert = (text) => {
         console.log("todoListInsert function >> ", text)
-        this.todoListArray.push({id:this.todoListArray.length+1, text:text})
+        let id = this.todoListArray.length > 0 ? this.todoListArray[this.todoListArray.length-1].id+1 : 1
+        this.todoListArray.push({id:id, text:text})
         this.badgeCount = this.todoListArray.length
     }
 
