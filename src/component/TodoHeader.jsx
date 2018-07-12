@@ -36,7 +36,7 @@ class TodoHeader extends Component {
 
         return (
                 <div>
-                    <Label>To-Do List<Badge>{store.todoListArray.length}</Badge></Label>
+                    <Label>To-Do List <Badge>{store.todoListArray.length}</Badge></Label>
                     {/*<Input type='text' innerRef={input => this.todoText = input}></Input><TodoButton todoCreate={this._insertTodoList}/>*/}
                     <InputGroup>
                     <Input type='text' innerRef={input => this.todoText = input}/>
