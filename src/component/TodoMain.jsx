@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { observable } from 'mobx';
-import { observer, Provider } from 'mobx-react';
+import { Provider } from 'mobx-react';
 
 import {Store} from './store';
 import TodoList from './TodoList';
