@@ -12,12 +12,6 @@ class TodoList extends Component {
         this.state = {
 
         };
-
-        this.checkedFlag = React.createRef();
-    }
-
-    componentWillMount() {
-
     }
 
     _todoRemove(id){

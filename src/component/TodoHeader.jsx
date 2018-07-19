@@ -15,8 +15,8 @@ class TodoHeader extends Component {
     }
 
     _insertTodoList(){
-        let todoText = this.todoText.value
-        if(todoText.length === 0) return
+        let todoText = this.todoText.value;
+        if(todoText.length === 0) return;
         this.props.store.todoListInsert(todoText)
     }
     
@@ -25,7 +25,8 @@ class TodoHeader extends Component {
 
         return (
                 <div>
-                    <Label>To-Do List <Badge>{store.todoListArray.length}</Badge></Label>
+                    {/*<Label>To-Do List <Badge>{store.badgeCount}</Badge></Label>*/}
+                    <Label>To-Do List <Badge>{store.badgeCount.get()}</Badge></Label>
                     <InputGroup>
                     <Input type='text' innerRef={input => this.todoText = input}/>
                     <InputGroupAddon addonType="prepend"><Button onClick={this._insertTodoList}>추가</Button></InputGroupAddon>
